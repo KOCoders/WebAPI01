@@ -21,6 +21,7 @@ namespace WebAPI_01.Data
         public byte Discount { get; set; }
 
         public int? ProductTypeID { get; set; }
+
         [ForeignKey("ProductTypeID")]
         public ProductType ProductType { get; set; }
 

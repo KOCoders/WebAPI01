@@ -25,5 +25,12 @@ namespace WebAPI_01.Data
         [ForeignKey("ProductTypeID")]
         public ProductType ProductType { get; set; }
 
+        public ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public Product()
+        {
+            OrderDetails = new List<OrderDetail>();
+        }
+
     }
 }

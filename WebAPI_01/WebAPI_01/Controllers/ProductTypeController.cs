@@ -50,7 +50,7 @@ namespace WebAPI_01.Controllers
                 };
                 _context.Add(productType);
                 _context.SaveChanges();
-                return Ok(productType);
+                return StatusCode(StatusCodes.Status201Created,productType);
             }
             catch
             {
@@ -70,6 +70,24 @@ namespace WebAPI_01.Controllers
                 productType.Description = model.Description;
                 _context.SaveChanges();
                 return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            var productType = _context.ProductTypes.SingleOrDefault(lo => lo.Id == id);
+            if (productType != null)
+            {
+                _context.Remove(productType);
+                _context.SaveChanges();
+                return StatusCode(StatusCodes.Status200OK);
             }
             else
             {
